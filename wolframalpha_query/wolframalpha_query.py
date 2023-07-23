@@ -31,5 +31,5 @@ class WolframAlphaQuery(Pack):
 
         return WolframAlphaAPIWrapper().run(query)
 
-    def _arun(self, query: str) -> list[str]:
+    async def _arun(self, query: str) -> list[str]:
         return self._run(query)

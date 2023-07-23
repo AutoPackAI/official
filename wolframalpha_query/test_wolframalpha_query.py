@@ -1,7 +1,7 @@
 import os
 from unittest.mock import patch
 
-from wolframalpha_query.wolframalpha_query import WolframAlphaQuery
+from wolframalpha_query import WolframAlphaQuery
 
 
 def test_wolframalpha_no_appid():

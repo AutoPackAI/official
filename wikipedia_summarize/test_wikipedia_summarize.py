@@ -3,7 +3,7 @@ from unittest.mock import patch
 import pytest
 from langchain.schema import Document
 
-from wikipedia_summarize.wikipedia_summarize import WikipediaPack
+from wikipedia_summarize import WikipediaPack
 
 
 def test_sync_llm():

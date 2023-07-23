@@ -1,4 +1,4 @@
-from disk_usage.disk_usage import DiskUsage
+from disk_usage import DiskUsage
 
 
 def test_disk_usage():
