@@ -157,20 +157,18 @@ version = "0.3.0"
 description = "Package Manager for AI Agent tools"
 optional = false
 python-versions = ">=3.8.1,<4.0"
-files = []
-develop = true
+files = [
+    {file = "autopack_tools-0.3.0-py3-none-any.whl", hash = "sha256:c2c95d70785b901d049ad6a4068c1f68b359fe74b8316adf8e6c03b2325dd285"},
+    {file = "autopack_tools-0.3.0.tar.gz", hash = "sha256:38e73fb3dd92e4af1edee7d128a5f666e4d041a29003a15dd85c3b3b2b56fd2f"},
+]
 
 [package.dependencies]
-dataclasses-json = "^0.5.8"
-gitpython = "^3.1.31"
+dataclasses-json = ">=0.5.8,<0.6.0"
+gitpython = ">=3.1.31,<4.0.0"
 langchain = ">=0.0.215"
-requests = "^2.31.0"
-types-requests = "^2.31.0.2"
-urllib3 = "^1.26.16"
-
-[package.source]
-type = "directory"
-url = "../orbital/autopack"
+requests = ">=2.31.0,<3.0.0"
+types-requests = ">=2.31.0.2,<3.0.0.0"
+urllib3 = ">=1.26.16,<2.0.0"
 
 [[package]]
 name = "beautifulsoup4"
@@ -917,6 +915,26 @@ docs = ["furo (>=2023.5.20)", "proselint (>=0.13)", "sphinx (>=7.0.1)", "sphinx-
 test = ["appdirs (==1.4.4)", "covdefaults (>=2.3)", "pytest (>=7.3.1)", "pytest-cov (>=4.1)", "pytest-mock (>=3.10)"]
 
 [[package]]
+name = "playwright"
+version = "1.36.0"
+description = "A high-level API to automate web browsers"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "playwright-1.36.0-py3-none-macosx_10_13_x86_64.whl", hash = "sha256:b7c6ddfca2b141b0385387cc56c125b14ea867902c39e3fc650ddd6c429b17da"},
+    {file = "playwright-1.36.0-py3-none-macosx_11_0_arm64.whl", hash = "sha256:428a719a6c7e40781c19860ed813840ac2d63678f7587abe12e800ea030d4b7e"},
+    {file = "playwright-1.36.0-py3-none-macosx_11_0_universal2.whl", hash = "sha256:4e396853034742b76654cdab27422155d238f46e4dc6369ea75854fafb935586"},
+    {file = "playwright-1.36.0-py3-none-manylinux1_x86_64.whl", hash = "sha256:72e80076e595f5fcd8ebd89bf6635ad78e4bafa633119faed8b2568d17dbd398"},
+    {file = "playwright-1.36.0-py3-none-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:ffbb927679b62fad5071439d5fe0840af46ad1844bc44bf80e1a0ad706140c98"},
+    {file = "playwright-1.36.0-py3-none-win32.whl", hash = "sha256:84213339f179fd2a70f77ea7faea0616d74871349d556c53a1ecb7dd5097973c"},
+    {file = "playwright-1.36.0-py3-none-win_amd64.whl", hash = "sha256:89ca2261bb00b67d3dff97691cf18f4347ee0529a11e431e47df67b703d4d8fa"},
+]
+
+[package.dependencies]
+greenlet = "2.0.2"
+pyee = "9.0.4"
+
+[[package]]
 name = "pluggy"
 version = "1.2.0"
 description = "plugin and hook calling mechanisms for python"
@@ -1008,6 +1026,20 @@ typing-extensions = ">=4.2.0"
 [package.extras]
 dotenv = ["python-dotenv (>=0.10.4)"]
 email = ["email-validator (>=1.0.3)"]
+
+[[package]]
+name = "pyee"
+version = "9.0.4"
+description = "A port of node.js's EventEmitter to python."
+optional = false
+python-versions = "*"
+files = [
+    {file = "pyee-9.0.4-py2.py3-none-any.whl", hash = "sha256:9f066570130c554e9cc12de5a9d86f57c7ee47fece163bbdaa3e9c933cfbdfa5"},
+    {file = "pyee-9.0.4.tar.gz", hash = "sha256:2770c4928abc721f46b705e6a72b0c59480c4a69c9a83ca0b00bb994f1ea4b32"},
+]
+
+[package.dependencies]
+typing-extensions = "*"
 
 [[package]]
 name = "pytest"
@@ -1446,4 +1478,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "93c0f51f9556449c009ba4a5e900b1586d55091cb3a760d3f30ccb788cc0c813"
+content-hash = "9b1887c77b06f0e876465913c1557ad1d4968720e55b7c34c9c7a198a3e88193"
