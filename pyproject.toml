@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "official"
+version = "0.1.0"
+description = "Offical Packs for AutoPack"
+authors = ["Erik Peterson <e@eriklp.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+autopack-tools =  { path = "/Users/epeterson/src/orbital/autopack", develop = true }
+wikipedia = "^1.4.0"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.7.0"
+pytest-asyncio = "^0.21.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
