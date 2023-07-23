@@ -9,7 +9,7 @@ class DiskUsageArgsSchema(BaseModel):
 
 class DiskUsage(Pack):
     name = "disk_usage"
-    description = "Get the current OS name and version information."
+    description = "Get disk usage information for this computer"
     dependencies = ["psutil"]
     args_schema = DiskUsageArgsSchema
     categories = ["System Info"]
