@@ -34,13 +34,11 @@ class WritePythonFile(Pack):
     categories = ["Programming", "Files"]
     reversible = False
 
-    workspace_path: str = Field(description="The path to the workspace where the file should be written", default=".")
-
     def _run(self, file_name: str, code: str = "") -> str:
-        file_path = os.path.join(self.workspace_path, file_name)
+        file_path = os.path.join(self.config.workspace_path, file_name)
 
         try:
-            abs_path = restrict_path(file_path, self.workspace_path)
+            abs_path = restrict_path(file_path, self.config.workspace_path)
             if not abs_path:
                 return "Error: File not found"
 
@@ -53,7 +51,7 @@ class WritePythonFile(Pack):
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 universal_newlines=True,
-                cwd=self.workspace_path,
+                cwd=self.config.workspace_path,
             )
             output = "\n".join([process.stdout.strip(), process.stderr.strip()]).strip()
 

@@ -24,7 +24,9 @@ class GoogleSearch(Pack):
         if not os.environ.get("SERPER_API_KEY"):
             return f"Google Search is not supported as the SERPER_API_KEY environment variable is not set"
         try:
-            return format_results(GoogleSerperAPIWrapper().results(query).get("organic", []))
+            return format_results(
+                GoogleSerperAPIWrapper().results(query).get("organic", [])
+            )
 
         except Exception as e:
             return f"Error: {e}"

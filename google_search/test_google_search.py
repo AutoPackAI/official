@@ -43,7 +43,9 @@ async def test_search_async():
         }
 
     os.environ["SERPER_API_KEY"] = "1234"
-    with patch("langchain.GoogleSerperAPIWrapper.aresults", new=async_results) as mock_load:
+    with patch(
+        "langchain.GoogleSerperAPIWrapper.aresults", new=async_results
+    ) as mock_load:
         results = await GoogleSearch().arun(query="bbc news website")
 
     assert "https://www.bbc.com/news" in results

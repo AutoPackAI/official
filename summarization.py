@@ -26,6 +26,9 @@ def _filter_long_documents(self, document: str) -> str:
 
 
 async def afilter_long_documents(
-    self, document: str, llm: Callable[[str], str], allm: Callable[[str], Awaitable[str]]
+    self,
+    document: str,
+    llm: Callable[[str], str],
+    allm: Callable[[str], Awaitable[str]],
 ) -> str:
     pass

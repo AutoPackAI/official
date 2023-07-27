@@ -24,7 +24,8 @@ class GetHtmlContent(Pack):
     dependencies = ["requests", "aiohttp"]
 
     filter_threshold: int = Field(
-        default=0, description="If given a non-zero value will return only the first N characters"
+        default=0,
+        description="If given a non-zero value will return only the first N characters",
     )
 
     def _run(self, url: str) -> str:

@@ -3,7 +3,9 @@ import platform
 from autopack import Pack
 from pydantic import BaseModel
 
-PACK_DESCRIPTION = "Get the name and version of the operating system you are running in."
+PACK_DESCRIPTION = (
+    "Get the name and version of the operating system you are running in."
+)
 
 
 class OSInfoArgs(BaseModel):
