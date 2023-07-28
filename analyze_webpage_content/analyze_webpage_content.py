@@ -28,9 +28,7 @@ Answer:
 
 
 class AnalyzeWebpageContentArgs(BaseModel):
-    url: str = Field(
-        ..., description="A full and valid URL of the webpage to be analyzed."
-    )
+    url: str = Field(..., description="A full and valid URL of the webpage to be analyzed.")
     question: str = Field(
         description="The question to be answered based on the webpage content.",
         default="",
@@ -47,9 +45,7 @@ class AnalyzeWebpageContent(Pack):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         # FIXME: Create an installer type system
-        subprocess.run(
-            ["playwright", "install"], stdout=subprocess.PIPE, stderr=subprocess.PIPE
-        )
+        subprocess.run(["playwright", "install"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     def _run(self, url: str, question: str = "") -> str:
         playwright = PlaywrightContextManager().start()
@@ -67,14 +63,12 @@ class AnalyzeWebpageContent(Pack):
         body_element = soup.find("body")
 
         if body_element:
-            text = body_element.get_text(separator="\n")
+            text = body_element.get_text(separator="\n")[:8000]
         else:
             return "Error: Could not summarize URL."
 
         if question:
-            prompt = QUESTION_PROMPT_TEMPLATE.format(
-                content=text, question=question, url=url
-            )
+            prompt = QUESTION_PROMPT_TEMPLATE.format(content=text, question=question, url=url)
         else:
             prompt = PROMPT_TEMPLATE.format(content=text, url=url)
 
@@ -93,14 +87,12 @@ class AnalyzeWebpageContent(Pack):
         body_element = soup.find("body")
 
         if body_element:
-            text = body_element.get_text(separator="\n")
+            text = body_element.get_text(separator="\n")[:8000]
         else:
             return "Error: Could not summarize URL."
 
         if question:
-            prompt = QUESTION_PROMPT_TEMPLATE.format(
-                content=text, question=question, url=url
-            )
+            prompt = QUESTION_PROMPT_TEMPLATE.format(content=text, question=question, url=url)
         else:
             prompt = PROMPT_TEMPLATE.format(content=text, url=url)
 
