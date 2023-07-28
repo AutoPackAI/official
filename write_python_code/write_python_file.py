@@ -16,7 +16,7 @@ PACK_DESCRIPTION = (
 )
 
 
-class WritePythonFileArgs(BaseModel):
+class WritePythonCodeArgs(BaseModel):
     file_name: str = Field(
         ...,
         description="The name of the file to be created or overwritten",
@@ -27,10 +27,10 @@ class WritePythonFileArgs(BaseModel):
     )
 
 
-class WritePythonFile(Pack):
+class WritePythonCode(Pack):
     name = "write_python_code"
     description = PACK_DESCRIPTION
-    args_schema = WritePythonFileArgs
+    args_schema = WritePythonCodeArgs
     categories = ["Programming", "Files"]
     reversible = False
 

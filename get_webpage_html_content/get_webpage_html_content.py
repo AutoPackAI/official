@@ -16,8 +16,8 @@ class GetHtmlContentArgs(BaseModel):
     )
 
 
-class GetHtmlContent(Pack):
-    name = "get_html_content"
+class GetWebpageHtmlContent(Pack):
+    name = "get_webpage_html_content"
     description = PACK_DESCRIPTION
     args_schema = GetHtmlContentArgs
     categories = ["Web"]

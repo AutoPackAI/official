@@ -1,10 +1,10 @@
 import os
 
-from write_python_file.write_python_file import WritePythonFile
+from write_python_code.write_python_file import WritePythonCode
 
 
 def test_write_python_file_success():
-    pack = WritePythonFile(workspace_path="workspace")
+    pack = WritePythonCode(workspace_path="workspace")
     code = "print('Hello world!')"
     file_name = "hello_world.py"
     result = pack.run(file_name=file_name, code=code)
@@ -16,7 +16,7 @@ def test_write_python_file_success():
 
 
 def test_write_python_file_compile_error():
-    pack = WritePythonFile(workspace_path="workspace")
+    pack = WritePythonCode(workspace_path="workspace")
     code = "asdf!"
     file_name = "error.py"
     result = pack.run(file_name=file_name, code=code)
