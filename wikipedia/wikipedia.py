@@ -4,9 +4,10 @@ from langchain import WikipediaAPIWrapper
 from pydantic import BaseModel, Field
 
 PACK_DESCRIPTION = (
-    "Retrieve information from Wikipedia based on a given search query and question. It provides a summary of the "
-    "relevant Wikipedia page based on a given question, enabling quick access to factual knowledge.Useful for when "
-    "you need to answer general questions about people, places, companies, facts, historical events, or other subjects."
+    "Searches Wikipedia based on a query and then analyzes the results. If a question is given, the analysis is based "
+    "on that question. Otherwise, a general summary is provided. Enables quick access to factual knowledge. Useful "
+    "for when you need to answer general questions about people, places, companies, facts, historical events, "
+    "or other subjects."
 )
 
 PROMPT_TEMPLATE = """Given the following pages from Wikipedia, provide an answer to the following question:
@@ -41,7 +42,7 @@ def get_pages(query: str) -> str:
 
 
 class WikipediaPack(Pack):
-    name = "wikipedia_summarize"
+    name = "wikipedia"
     description = PACK_DESCRIPTION
     args_schema = WikipediaArgs
     dependencies = ["wikipedia"]
