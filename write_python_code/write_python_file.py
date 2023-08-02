@@ -34,7 +34,7 @@ class WritePythonCode(Pack):
     categories = ["Programming", "Files"]
     reversible = False
 
-    def _run(self, file_name: str, code: str = "") -> str:
+    def check_file(self, file_name, code: str = "") -> str:
         file_path = os.path.join(self.config.workspace_path, file_name)
 
         try:
@@ -59,12 +59,18 @@ class WritePythonCode(Pack):
                 os.unlink(file_path)
                 return f"Compile error: {output}."
 
-            self.filesystem_manager.write_file(file_name, code)
             return f"Compiled successfully and saved to {file_name}."
 
         except Exception as e:
             os.unlink(file_path)
-            return f"Error: {e}"
+            return f"Error: {e.__class__.__name__} {e}"
+
+    def _run(self, file_name: str, code: str = "") -> str:
+        result = self.check_file(file_name, code)
+        self.filesystem_manager.write_file(file_name, code)
+        return result
 
     async def _arun(self, file_name: str, code: str = "") -> str:
-        return self._run(file_name, code)
+        result = self.check_file(file_name, code)
+        await self.filesystem_manager.awrite_file(file_name, code)
+        return result
