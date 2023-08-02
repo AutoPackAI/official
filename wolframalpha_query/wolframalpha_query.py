@@ -5,9 +5,9 @@ from langchain import WolframAlphaAPIWrapper
 from pydantic import BaseModel, Field
 
 PACK_DESCRIPTION = (
-    "Query Wolfram Alpha, a computational knowledge engine, to obtain answers to a wide range of "
-    "factual and computational questions. It leverages Wolfram Alpha's extensive knowledge base to "
-    "provide detailed and accurate responses."
+    "Query Wolfram Alpha, a computational knowledge engine, to obtain answers to a wide range of factual and "
+    "computational questions. It leverages Wolfram Alpha's extensive knowledge base to provide detailed and accurate "
+    "responses. Useful for when you need to answer questions about Math, Science, Technology, and Everyday Life."
 )
 
 
