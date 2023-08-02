@@ -25,8 +25,8 @@ class WikipediaArgs(BaseModel):
         description="A search query to pull up pages which may include the answer to your question",
     )
     question: str = Field(
-        ...,
         description="The question you wish to answer, posed in the form of a question",
+        default="Provide me with a general summary of the pages below.",
     )
 
 
