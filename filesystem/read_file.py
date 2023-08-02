@@ -19,4 +19,4 @@ class ReadFile(Pack):
         return self.filesystem_manager.read_file(filename)
 
     async def _arun(self, filename: str) -> str:
-        return self.filesystem_manager.aread_file(filename)
+        return await self.filesystem_manager.aread_file(filename)
