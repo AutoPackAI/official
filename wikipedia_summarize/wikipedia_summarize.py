@@ -4,9 +4,9 @@ from langchain import WikipediaAPIWrapper
 from pydantic import BaseModel, Field
 
 PACK_DESCRIPTION = (
-    "Retrieve information from Wikipedia based on a given search query and question. It provides a "
-    "summary of the relevant Wikipedia page based on a given question, enabling quick access to "
-    "factual knowledge."
+    "Retrieve information from Wikipedia based on a given search query and question. It provides a summary of the "
+    "relevant Wikipedia page based on a given question, enabling quick access to factual knowledge.Useful for when "
+    "you need to answer general questions about people, places, companies, facts, historical events, or other subjects."
 )
 
 PROMPT_TEMPLATE = """Given the following pages from Wikipedia, provide an answer to the following question:
