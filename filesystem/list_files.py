@@ -18,5 +18,5 @@ class ListFiles(Pack):
     def _run(self, path: str):
         return self.filesystem_manager.list_files(path)
 
-    def _arun(self) -> str:
-        return self._run()
+    async def _arun(self, path: str) -> str:
+        return await self.filesystem_manager.alist_files(path)

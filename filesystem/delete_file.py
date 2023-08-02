@@ -13,7 +13,7 @@ class DeleteFile(Pack):
     categories = ["Files"]
 
     def _run(self, filename: str) -> str:
-        self.filesystem_manager.delete_file(filename)
+        return self.filesystem_manager.delete_file(filename)
 
     def _arun(self, filename: str) -> str:
-        return self._run(filename=filename)
+        return self.filesystem_manager.adelete_file(filename)
