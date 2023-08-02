@@ -59,6 +59,7 @@ class WritePythonCode(Pack):
                 os.unlink(file_path)
                 return f"Compile error: {output}."
 
+            self.filesystem_manager.write_file(file_name, code)
             return f"Compiled successfully and saved to {file_name}."
 
         except Exception as e:
