@@ -15,5 +15,5 @@ class DeleteFile(Pack):
     def _run(self, filename: str) -> str:
         return self.filesystem_manager.delete_file(filename)
 
-    def _arun(self, filename: str) -> str:
+    async def _arun(self, filename: str) -> str:
         return self.filesystem_manager.adelete_file(filename)

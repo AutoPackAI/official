@@ -18,5 +18,5 @@ class ReadFile(Pack):
     def _run(self, filename: str) -> str:
         return self.filesystem_manager.read_file(filename)
 
-    def _arun(self, filename: str) -> str:
+    async def _arun(self, filename: str) -> str:
         return self.filesystem_manager.aread_file(filename)
