@@ -23,7 +23,7 @@ class WolframAlphaQuery(Pack):
     description = PACK_DESCRIPTION
     args_schema = WolframAlphaArgs
     dependencies = ["wolframalpha_query"]
-    categories = ["Information", "Science and Math"]
+    categories = ["Information"]
 
     def _run(self, query: str) -> list[str]:
         if not os.environ.get("WOLFRAM_ALPHA_APPID"):

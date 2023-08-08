@@ -31,7 +31,7 @@ class WritePythonCode(Pack):
     name = "write_python_code"
     description = PACK_DESCRIPTION
     args_schema = WritePythonCodeArgs
-    categories = ["Programming", "Files"]
+    categories = ["Programming"]
     reversible = False
 
     def check_file(self, file_name, code: str = "") -> str:

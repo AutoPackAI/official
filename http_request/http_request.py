@@ -28,7 +28,7 @@ class HttpRequest(Pack):
     name = "http_request"
     description = PACK_DESCRIPTION
     args_schema = HttpRequestArgs
-    categories = ["API"]
+    categories = ["Web"]
 
     def _run(self, url: str, method: str = "GET", data: str = None, headers: str = None) -> str:
         headers_dict = {}
