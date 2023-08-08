@@ -4,8 +4,8 @@ from autopack import Pack
 from pydantic import BaseModel, Field
 
 PACK_DESCRIPTION = (
-    "Retrieves the HTML content of a specified webpage. It is useful when you specifically require access to the raw "
-    "HTML of a webpage, and are not interested in its text contents."
+    "Retrieves the raw HTML content of a specified webpage. It is useful when you specifically require access to the "
+    "raw HTML of a webpage, and are not interested in its text contents."
 )
 
 

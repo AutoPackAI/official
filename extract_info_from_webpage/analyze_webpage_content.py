@@ -7,10 +7,7 @@ from playwright.async_api import async_playwright
 from playwright.sync_api import PlaywrightContextManager
 from pydantic import BaseModel, Field
 
-PACK_DESCRIPTION = (
-    "Retrieves and analyzes the content of a given URL, and answers the given question based on the contents of that "
-    "webpage"
-)
+PACK_DESCRIPTION = "Extracts specific information from a webpage's content."
 
 PROMPT_TEMPLATE = """Please provide a summary of the following content, which was gathered from the website {url}:
 {content}
@@ -27,18 +24,18 @@ Answer:
 """
 
 
-class AnalyzeWebpageContentArgs(BaseModel):
-    url: str = Field(..., description="A full and valid URL of the webpage to be analyzed.")
-    question: str = Field(
-        description="The question to be answered based on the webpage content.",
+class ExtractInfoFromWebpageArgs(BaseModel):
+    url: str = Field(..., description="The URL of the webpage to analyze.")
+    information: str = Field(
+        description="The type of information to extract.",
         default="",
     )
 
 
-class AnalyzeWebpageContent(Pack):
-    name = "analyze_webpage_content"
+class ExtractInfoFromWebpage(Pack):
+    name = "extract_information_from_webpage"
     description = PACK_DESCRIPTION
-    args_schema = AnalyzeWebpageContentArgs
+    args_schema = ExtractInfoFromWebpageArgs
     categories = ["Web"]
     dependencies = ["playwright", "beautifulsoup4"]
 
