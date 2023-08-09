@@ -44,7 +44,7 @@ class ExtractInfoFromWebpage(Pack):
         # FIXME: Create an installer type system
         subprocess.run(["playwright", "install"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-    def _run(self, url: str, question: str = "") -> str:
+    def _run(self, url: str, information: str = "") -> str:
         playwright = PlaywrightContextManager().start()
         browser = playwright.chromium.launch()
         try:
