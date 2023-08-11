@@ -24,7 +24,7 @@ Answer:
 """
 
 
-class ExtractInfoFromWebpageArgs(BaseModel):
+class ExtractInformationFromWebpageArgs(BaseModel):
     url: str = Field(..., description="The URL of the webpage to analyze.")
     information: str = Field(
         description="The type of information to extract.",
@@ -32,10 +32,10 @@ class ExtractInfoFromWebpageArgs(BaseModel):
     )
 
 
-class ExtractInfoFromWebpage(Pack):
+class ExtractInformationFromWebpage(Pack):
     name = "extract_information_from_webpage"
     description = PACK_DESCRIPTION
-    args_schema = ExtractInfoFromWebpageArgs
+    args_schema = ExtractInformationFromWebpageArgs
     categories = ["Web"]
     dependencies = ["playwright", "beautifulsoup4"]
 
@@ -64,15 +64,15 @@ class ExtractInfoFromWebpage(Pack):
         else:
             return "Error: Could not summarize URL."
 
-        if question:
-            prompt = QUESTION_PROMPT_TEMPLATE.format(content=text, question=question, url=url)
+        if information:
+            prompt = QUESTION_PROMPT_TEMPLATE.format(content=text, question=information, url=url)
         else:
             prompt = PROMPT_TEMPLATE.format(content=text, url=url)
 
         response = call_llm(prompt, self.llm)
         return response
 
-    async def _arun(self, url: str, question: str = "") -> str:
+    async def _arun(self, url: str, information: str = "") -> str:
         async with async_playwright() as playwright:
             browser = await playwright.chromium.launch()
             page = await browser.new_page()
@@ -88,8 +88,8 @@ class ExtractInfoFromWebpage(Pack):
         else:
             return "Error: Could not summarize URL."
 
-        if question:
-            prompt = QUESTION_PROMPT_TEMPLATE.format(content=text, question=question, url=url)
+        if information:
+            prompt = QUESTION_PROMPT_TEMPLATE.format(content=text, question=information, url=url)
         else:
             prompt = PROMPT_TEMPLATE.format(content=text, url=url)
 
