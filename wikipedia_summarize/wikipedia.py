@@ -1,7 +1,9 @@
+import asyncio
+import wikipedia
 from autopack import Pack
 from autopack.utils import call_llm, acall_llm
-from langchain import WikipediaAPIWrapper
 from pydantic import BaseModel, Field
+from wikipedia import WikipediaPage
 
 PACK_DESCRIPTION = (
     "Searches Wikipedia based on a query and then analyzes the results. If a question is given, the analysis is based "
@@ -10,7 +12,7 @@ PACK_DESCRIPTION = (
     "or other subjects."
 )
 
-PROMPT_TEMPLATE = """Given the following pages from Wikipedia, provide an answer to the following question:
+PROMPT_TEMPLATE = """Given the following pages from Wikipedia, provide a detailed answer to the following question:
 
 Question: {question}
 
@@ -26,19 +28,28 @@ class WikipediaArgs(BaseModel):
     )
     question: str = Field(
         description="The question you wish to answer, posed in the form of a question",
-        default="Provide me with a general summary of the pages below.",
+        default="Provide me with a detailed summary of the pages below.",
     )
 
 
-def get_pages(query: str) -> str:
-    page_text = []
+def fetch_page(page_title: str) -> WikipediaPage:
+    return wikipedia.page(page_title)
 
-    for page in WikipediaAPIWrapper().load(query):
-        title = page.metadata.get("title", "Unknown title")
-        # Assuming we don't want the summary? Returning just the summary is probably another tool
-        page_text.append(f"-- Page: {title}\n{page.page_content}")
 
-    return "\n".join(page_text)
+async def get_page(page_title: str) -> WikipediaPage:
+    loop = asyncio.get_event_loop()
+    return await loop.run_in_executor(None, fetch_page, page_title)
+
+
+async def get_pages(query: str) -> str:
+    page_titles = wikipedia.search(query, results=5)
+    pages = await asyncio.gather(*(get_page(title) for title in page_titles))
+
+    result = []
+    for page in pages:
+        result.append(f"-- Page: {page.title}\n{page.summary}")
+
+    return "\n".join(result)
 
 
 class WikipediaPack(Pack):
@@ -63,11 +74,12 @@ class WikipediaPack(Pack):
     async def _arun(
         self,
         query: str,
-        question: str = "Provide me with a general summary of the pages below.",
+        question: str = "Provide me with a detailed summary of the pages below.",
     ):
         try:
-            prompt = PROMPT_TEMPLATE.format(question=question, pages=get_pages(query))
-            response = await acall_llm(prompt, self.allm or self.llm)
+            pages = await get_pages(query)
+            prompt = PROMPT_TEMPLATE.format(question=question, pages=pages)
+            response = await acall_llm(prompt, self.allm)
             return response
         except Exception as e:
             return f"Error: {e}"
